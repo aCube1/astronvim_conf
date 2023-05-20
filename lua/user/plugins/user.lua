@@ -2,10 +2,14 @@ return {
 	-- Misc
 	{
 		"folke/todo-comments.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
+		lazy = false,
+		config = function()
+			require("todo-comments").setup({})
+		end,
 	},
 	{
 		"tzachar/cmp-tabnine",
+		lazy = false,
 		build = "./install.sh",
 		dependencies = "hrsh7th/nvim-cmp",
 	},
