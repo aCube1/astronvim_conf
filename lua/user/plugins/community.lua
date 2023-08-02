@@ -12,17 +12,29 @@ return {
     },
   },
 
+  -- Completion
+  --{ import = "astrocommunity.completion.tabnine-nvim" },
+
   -- Langs
   { import = "astrocommunity.pack.lua" },
 
   -- Misc
-  { import = "astrocommunity.colorscheme.catppuccin" },
+  {
+    import = "astrocommunity.colorscheme.catppuccin",
+    opts = {
+      transparent_background = true,
+    },
+  },
+  --[[
   { import = "astrocommunity.media.presence-nvim" },
   {
     "andweeb/presence.nvim",
     opts = {
-      buttons = false,
+      client_id = "793271441293967371",
+      enable_line_number = false,
       main_image = "file",
+      buttons = false,
     },
   },
+  --]]
 }
