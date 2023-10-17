@@ -11,15 +11,10 @@ return {
     show_changelog = false, -- show the changelog after performing an update
     auto_reload = true, -- automatically reload and sync packer after a successful update
     auto_quit = true, -- automatically quit the current session after a successful update
-    -- remotes = { -- easily add new remotes to track
-    --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
-    --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
-    --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
-    -- },
   },
 
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "carbonfox",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -41,7 +36,7 @@ return {
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
-        "sumneko_lua",
+        -- "sumneko_lua",
       },
       timeout_ms = 1000, -- default format timeout
     },
@@ -53,20 +48,8 @@ return {
     performance = {
       rtp = {
         -- customize default disabled vim plugins
-        disabled_plugins = {
-          "tohtml",
-          "gzip",
-          "matchit",
-          "zipPlugin",
-          "netrwPlugin",
-          "tarPlugin",
-        },
+        disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
       },
     },
   },
-
-  -- This function is run last and is a good place to configuring
-  -- augroups/autocommands and custom filetypes also this just pure lua so
-  -- anything that doesn't fit in the normal config locations above can go here
-  polish = function() end,
 }

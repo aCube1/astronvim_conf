@@ -1,17 +1,22 @@
 return {
   settings = {
     Lua = {
-      telemetry = { enable = false },
-      runtime = { version = "LuaJIT" },
-      workspace = {
-        userThirdParty = {
-          vim.fn.expand("~/.config/astronvim/lua/user/lsp/addons/love2d"),
+      diagnostics = {
+        globals = { "vim" },
+      },
+      runtime = {
+        version = "LuaJIT",
+        special = {
+          ["love.filesystem.load"] = "loadfile",
         },
+      },
+      workspace = {
         library = {
-          vim.fn.expand("~/.config/astronvim/lua/user/lsp/addons/love2d/library"),
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.stdpath("config") .. "/lua"] = true,
+          [vim.fn.stdpath("config") .. "/lua/LLS-Addons/love2d/library"] = true,
         },
       },
     },
   },
-  single_file_support = false,
 }

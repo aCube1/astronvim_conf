@@ -1,4 +1,7 @@
 return {
+  -- Langs
+  { "maxbane/vim-asm_ca65", lazy = false },
+
   -- Misc
   {
     "folke/todo-comments.nvim",
@@ -7,14 +10,12 @@ return {
       require("todo-comments").setup({})
     end,
   },
-  --[[
-	{
-		"tzachar/cmp-tabnine",
-		lazy = false,
-		build = "./install.sh",
-		dependencies = "hrsh7th/nvim-cmp",
-	},
-	--]]
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000,
+  },
   {
     "cappyzawa/trim.nvim",
     lazy = false,
@@ -22,15 +23,10 @@ return {
     opts = {},
   },
   {
-    "p00f/clangd_extensions.nvim",
-    dependencies = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+    "rcarriga/nvim-notify",
+    opts = {
+      stages = "fade",
+      background_colour = "#000000",
+    },
   },
-  --[[
-	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = { "clangd" }, -- automatically install lsp
-		},
-	},
-	--]]
 }
