@@ -1,6 +1,6 @@
 return {
   -- Langs
-  { "maxbane/vim-asm_ca65", lazy = false },
+  -- { "maxbane/vim-asm_ca65", lazy = false },
 
   -- Misc
   {

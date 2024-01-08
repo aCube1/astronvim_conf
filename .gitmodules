@@ -1,0 +1,3 @@
+[submodule "LLSAddons"]
+	path = LLSAddons
+	url = git@github.com:LuaLS/LLS-Addons.git
