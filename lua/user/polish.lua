@@ -1,8 +1,15 @@
 return function()
   vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWinEnter" }, {
-    pattern = { "*.s", "*.inc" },
+    pattern = { "*.z80" },
     callback = function(ev)
       vim.api.nvim_buf_set_option(ev.buf, "filetype", "gbz80")
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWinEnter" }, {
+    pattern = { "*.s65", "*.asm65" },
+    callback = function(ev)
+      vim.api.nvim_buf_set_option(ev.buf, "filetype", "asm_ca65")
     end,
   })
 

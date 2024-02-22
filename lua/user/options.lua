@@ -11,6 +11,7 @@ return {
     colorcolumn = "80,90",
     wichwrap = vim.opt.whichwrap:append("<,>,[,],h,l"),
     termguicolors = true,
+    title = false,
   },
   g = {
     mapleader = " ",

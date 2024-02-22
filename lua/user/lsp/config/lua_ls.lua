@@ -5,7 +5,11 @@ return {
     Lua = {
       format = { enable = false },
       hint = { enable = true },
-      diagnostics = { globals = { "vim" } },
+
+      diagnostics = {
+        disable = { "unused-local" },
+        globals = { "vim" },
+      },
 
       completion = {
         enable = true,
@@ -24,6 +28,7 @@ return {
         library = {
           [config_path .. "/LLSAddons/luaecs/module/library"] = true,
           [config_path .. "/LLSAddons/love2d/module/library"] = true,
+          [config_path .. "/LLSAddons/xmake/module/library"] = true,
         },
       },
     },
