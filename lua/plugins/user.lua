@@ -3,9 +3,6 @@
 
 ---@type LazySpec
 return {
-
-  -- == Examples of Adding Plugins ==
-
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
@@ -40,26 +37,28 @@ return {
       background_colour = "#000000",
     },
   },
+  {
+    "fedepujol/move.nvim",
+    opts = {},
+  },
 
-  -- == Examples of Overriding Plugins ==
-
-  -- customize alpha options
+  -- Overridings
   {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       -- customize the dashboard header
       opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+        "         ▒▒▒        ",
+        "     ▒▒▒▒▒▒▒▒▒▒     ",
+        " ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
+        "░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+        "░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+        "  ░░░░░░░░▒▒▒▒▒▒▒▒  ",
+        "     ░░░░░▒▒▒▒▒     ",
+        "         ░▒         ",
       }
       return opts
     end,

@@ -5,15 +5,14 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-    -- Code helpers
+  -- Code helpers
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.indent.indent-blankline-nvim" },
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   {
     "m4xshen/smartcolumn.nvim",
     opts = {
-      colorcolumn = 120,
+      colorcolumn = "90",
       disabled_filetypes = { "help" },
     },
   },
@@ -23,7 +22,6 @@ return {
   { import = "astrocommunity.pack.cpp" },
 
   -- LSP
-  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
 
   -- Misc
@@ -34,13 +32,12 @@ return {
     opts = {
       options = {
         transparent = true,
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          types = "italic,bold",
+        },
       },
-    },
-  },
-  {
-    import = "astrocommunity.colorscheme.catppuccin",
-    opts = {
-      transparent_background = true,
     },
   },
 }

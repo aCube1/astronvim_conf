@@ -13,7 +13,7 @@ return {
     features = {
       autoformat = true,
       codelens = true,
-      inlay_hints = false,
+      inlay_hints = true,
       semantic_tokens = true,
     },
     formatting = {
@@ -25,9 +25,9 @@ return {
       disabled = {},
       timeout_ms = 1000,
     },
-    -- enable servers that you already have installed without mason
     servers = {
       "glsl_analyzer",
+      "zls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -55,24 +55,20 @@ return {
           Lua = {
             format = { enable = false },
             hint = { enable = true },
-
             diagnostics = {
               disable = { "unused-local" },
               globals = { "vim" },
             },
-
             completion = {
               enable = true,
               autoRequire = true,
             },
-
             runtime = {
               version = "LuaJIT",
               special = {
                 ["love.filesystem.load"] = "loadfile",
               },
             },
-
             workspace = {
               checkThirdParty = "Apply",
               library = {
@@ -85,17 +81,12 @@ return {
         },
       },
     },
-    -- customize how language servers are attached
     handlers = {},
-    -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
-      -- first key is the `augroup` to add the auto commands to (:h augroup)
       lsp_document_highlight = {
         cond = "textDocument/documentHighlight",
         {
-          -- events to trigger
           event = { "CursorHold", "CursorHoldI" },
-          -- the rest of the autocmd options (:h nvim_create_autocmd)
           desc = "Document Highlighting",
           callback = function() vim.lsp.buf.document_highlight() end,
         },
@@ -106,12 +97,11 @@ return {
         },
       },
     },
-    -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
       },
     },
-    on_attach = function(client, bufnr) end,
+    -- on_attach = function(client, bufnr) require("clangd_extensions.inlay_hints").set_inlay_hints() end,
   },
 }

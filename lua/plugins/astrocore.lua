@@ -39,24 +39,40 @@ return {
         termguicolors = true,
         title = false,
       },
-      g = { -- vim.g.<key>
-        moonflyNormalFloat = true,
-        moonflyWinSeparator = 2,
-      },
     },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
       -- first key is the mode
       n = {
-        ["<leader>ft"] = { "<cmd>TodoTelescope<cr>", desc = "Search TODOs" },
-
         ["<Leader>b"] = { desc = "Buffers" },
+
+        -- todos-comments.nvim
+        ["<Leader>ft"] = { "<cmd>TodoTelescope<cr>", desc = "Search TODOs" },
+
+        -- move.nvim
+        ["<A-Up>"] = { ":MoveLine(-1)<cr>", desc = "Move Line Up" },
+        ["<A-Down>"] = { ":MoveLine(1)<cr>", desc = "Move Line Down" },
       },
-      t = {
-        -- setting a mapping to false will disable it
-        -- ["<esc>"] = false,
+      v = {
+        -- move.nvim
+        ["<A-Up>"] = { ":MoveBlock(-1)<cr>", desc = "Move Selection Up" },
+        ["<A-Down>"] = { ":MoveBlock(1)<cr>", desc = "Move Selection Down" },
       },
+    },
+    rooter = {
+      detector = {
+        "lsp",
+        { ".git", ".cache", ".godot" },
+        { "MakeFile", "CMakeLists.txt", "project.godot" },
+      },
+      ignore = {
+        servers = {},
+        dirs = {},
+      },
+      autochdir = true,
+      scope = "global",
+      notify = true, -- show notification on every working directory change
     },
   },
 }
