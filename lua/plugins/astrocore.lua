@@ -70,7 +70,7 @@ return {
         servers = {},
         dirs = {},
       },
-      autochdir = true,
+      autochdir = false,
       scope = "global",
       notify = true, -- show notification on every working directory change
     },

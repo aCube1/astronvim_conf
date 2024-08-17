@@ -19,12 +19,6 @@ return {
     config = function() require("todo-comments").setup {} end,
   },
   {
-    "bluz71/vim-moonfly-colors",
-    name = "moonfly",
-    lazy = false,
-    priority = 1000,
-  },
-  {
     "cappyzawa/trim.nvim",
     lazy = false,
     event = "BufWritePre",
@@ -39,7 +33,26 @@ return {
   },
   {
     "fedepujol/move.nvim",
-    opts = {},
+    opts = {
+      line = {
+        enable = true, -- Enables line movement
+        indent = true, -- Toggles indentation
+      },
+      block = {
+        enable = true, -- Enables block movement
+        indent = true, -- Toggles indentation
+      },
+    },
+  },
+  {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup()
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
   },
 
   -- Overridings
