@@ -12,8 +12,10 @@ return {
     config.sources = {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.gofumpt,
       -- null_ls.builtins.formatting.gdformat,
 
+      null_ls.builtins.diagnostics.revive,
       -- null_ls.builtins.diagnostics.gdlint,
     }
     return config

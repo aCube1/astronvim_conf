@@ -25,13 +25,6 @@ return {
     opts = {},
   },
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      stages = "fade",
-      background_colour = "#000000",
-    },
-  },
-  {
     "fedepujol/move.nvim",
     opts = {
       line = {
@@ -52,28 +45,6 @@ return {
       require("peek").setup()
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
-  },
-
-  -- Overridings
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      -- customize the dashboard header
-      opts.section.header.val = {
-        "         ▒▒▒        ",
-        "     ▒▒▒▒▒▒▒▒▒▒     ",
-        " ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
-        "░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
-        "░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
-        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
-        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
-        "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
-        "  ░░░░░░░░▒▒▒▒▒▒▒▒  ",
-        "     ░░░░░▒▒▒▒▒     ",
-        "         ░▒         ",
-      }
-      return opts
     end,
   },
 }

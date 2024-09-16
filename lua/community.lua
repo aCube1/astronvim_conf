@@ -9,7 +9,7 @@ return {
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.indent.indent-blankline-nvim" },
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.lsp.nvim-lsp-endhints" },
   {
     "m4xshen/smartcolumn.nvim",
     opts = {
@@ -21,12 +21,15 @@ return {
   -- Langs
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.godot" },
+  { import = "astrocommunity.pack.cs" },
 
   -- LSP
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
 
   -- Misc
   { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
+  { import = "astrocommunity.media.neocord-nvim" },
   {
     "olimorris/onedarkpro.nvim",
     opts = {

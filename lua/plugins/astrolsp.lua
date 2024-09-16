@@ -72,10 +72,24 @@ return {
             workspace = {
               checkThirdParty = "Apply",
               library = {
-                [config_path .. "/LLSAddons/luaecs/module/library"] = true,
                 [config_path .. "/LLSAddons/love2d/module/library"] = true,
-                [config_path .. "/LLSAddons/xmake/module/library"] = true,
               },
+            },
+          },
+        },
+      },
+      gopls = {
+        settings = {
+          gopls = {
+            gofumpt = true,
+            hints = {
+              assignVariablesTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = false,
+              constantValues = false,
+              functionTypeParameters = false,
+              parameterNames = true,
+              rangeVariableTypes = true,
             },
           },
         },
