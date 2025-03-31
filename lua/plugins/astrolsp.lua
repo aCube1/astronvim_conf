@@ -25,9 +25,12 @@ return {
       disabled = {},
       timeout_ms = 1000,
     },
+    diagnostics = {
+      virtual_text = false,
+      severity_sort = true,
+    },
     servers = {
       "glsl_analyzer",
-      "zls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -37,45 +40,15 @@ return {
           "clangd",
           "--background-index",
           "--clang-tidy",
-          "--completion-style=bundled",
-          "--cross-file-rename",
+          "--completion-style=detailed",
           "--function-arg-placeholders",
           "--header-insertion=iwyu",
           "--header-insertion-decorators",
-          "-j=8",
           "--malloc-trim",
           "--pch-storage=memory",
         },
         capabilities = {
           offsetEncoding = "utf-8",
-        },
-      },
-      lua_ls = {
-        settings = {
-          Lua = {
-            format = { enable = false },
-            hint = { enable = true },
-            diagnostics = {
-              disable = { "unused-local" },
-              globals = { "vim" },
-            },
-            completion = {
-              enable = true,
-              autoRequire = true,
-            },
-            runtime = {
-              version = "LuaJIT",
-              special = {
-                ["love.filesystem.load"] = "loadfile",
-              },
-            },
-            workspace = {
-              checkThirdParty = "Apply",
-              library = {
-                [config_path .. "/LLSAddons/love2d/module/library"] = true,
-              },
-            },
-          },
         },
       },
       gopls = {
@@ -94,28 +67,38 @@ return {
           },
         },
       },
-    },
-    handlers = {},
-    autocmds = {
-      lsp_document_highlight = {
-        cond = "textDocument/documentHighlight",
-        {
-          event = { "CursorHold", "CursorHoldI" },
-          desc = "Document Highlighting",
-          callback = function() vim.lsp.buf.document_highlight() end,
+      lua_ls = {
+        settings = {
+          Lua = {
+            format = { enable = false },
+            hint = { enable = true },
+            diagnostics = {
+              globals = { "vim" },
+            },
+            completion = {
+              enable = true,
+              autoRequire = true,
+            },
+            runtime = {
+              version = "LuaJIT",
+            },
+          },
         },
-        {
-          event = { "CursorMoved", "CursorMovedI", "BufLeave" },
-          desc = "Document Highlighting Clear",
-          callback = function() vim.lsp.buf.clear_references() end,
+      },
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = true,
+            check = {
+              command = "clippy",
+            },
+            cargo = {
+              extraEnv = { CARGO_PROFILE_RUST_ANALYZER_INHERITS = "dev" },
+              extraArgs = { "--profile", "rust-analyzer" },
+            },
+          },
         },
       },
     },
-    mappings = {
-      n = {
-        gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
-      },
-    },
-    -- on_attach = function(client, bufnr) require("clangd_extensions.inlay_hints").set_inlay_hints() end,
   },
 }

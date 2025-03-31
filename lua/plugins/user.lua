@@ -9,9 +9,6 @@ return {
     config = function() require("lsp_signature").setup() end,
   },
 
-  -- Langs
-  { "maxbane/vim-asm_ca65", lazy = false },
-
   -- Misc
   {
     "folke/todo-comments.nvim",

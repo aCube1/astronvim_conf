@@ -19,13 +19,14 @@ return {
   },
 
   -- Langs
-  { import = "astrocommunity.pack.lua" },
+  -- { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.godot" },
-  { import = "astrocommunity.pack.cs" },
+  { import = "astrocommunity.pack.rust" },
 
   -- LSP
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
 
   -- Misc
   { import = "astrocommunity.colorscheme.onedarkpro-nvim" },

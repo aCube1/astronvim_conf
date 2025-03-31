@@ -71,6 +71,7 @@
         "/home/aCube/.config/astronvim_v4/lua",
         "/home/aCube/.config/nvim/lua",
         "${3rd}/luv/library",
-        "${3rd}/luassert/library"
+        "${3rd}/luassert/library",
+        "${3rd}/love2d/library"
     ]
 }

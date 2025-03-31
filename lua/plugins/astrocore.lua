@@ -34,6 +34,7 @@ return {
         expandtab = false,
         tabstop = 4,
         shiftwidth = 4,
+        smartcase = true,
         colorcolumn = "80,90",
         wichwrap = vim.opt.whichwrap:append "<,>,[,],h,l",
         termguicolors = true,
@@ -53,26 +54,18 @@ return {
         -- move.nvim
         ["<A-Up>"] = { ":MoveLine(-1)<cr>", desc = "Move Line Up" },
         ["<A-Down>"] = { ":MoveLine(1)<cr>", desc = "Move Line Down" },
+
+        -- Switch buffers
+        ["<C-Left>"] = { ":bprevious<cr>", desc = "Switch to previous buffer" },
+        ["<C-Right>"] = { ":bnext<cr>", desc = "Switch to next buffer" },
+        ["<C-Up>"] = { "5k", desc = "Move cursor up 5x" },
+        ["<C-Down>"] = { "5j", desc = "Move cursor down 5x" },
       },
       v = {
         -- move.nvim
         ["<A-Up>"] = { ":MoveBlock(-1)<cr>", desc = "Move Selection Up" },
         ["<A-Down>"] = { ":MoveBlock(1)<cr>", desc = "Move Selection Down" },
       },
-    },
-    rooter = {
-      detector = {
-        "lsp",
-        { ".git", ".cache", ".godot" },
-        { "MakeFile", "CMakeLists.txt", "project.godot" },
-      },
-      ignore = {
-        servers = {},
-        dirs = {},
-      },
-      autochdir = false,
-      scope = "global",
-      notify = true, -- show notification on every working directory change
     },
   },
 }
