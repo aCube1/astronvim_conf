@@ -13,10 +13,10 @@ return {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-
+      diagnostics = { virtual_text = true, virtual_lines = false },
       highlighturl = true, -- highlight URLs at start
       notifications = true, -- enable notifications at start
+      signature_help = true,
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -44,27 +44,21 @@ return {
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
     mappings = {
-      -- first key is the mode
+      i = {
+        ["<Up>"] = false,
+        ["<Down>"] = false,
+      },
       n = {
         ["<Leader>b"] = { desc = "Buffers" },
+        ["<C-Up>"] = { "5k", desc = "Move cursor up 5x" },
+        ["<C-Down>"] = { "5j", desc = "Move cursor down 5x" },
 
         -- todos-comments.nvim
         ["<Leader>ft"] = { "<cmd>TodoTelescope<cr>", desc = "Search TODOs" },
 
-        -- move.nvim
-        ["<A-Up>"] = { ":MoveLine(-1)<cr>", desc = "Move Line Up" },
-        ["<A-Down>"] = { ":MoveLine(1)<cr>", desc = "Move Line Down" },
-
         -- Switch buffers
         ["<C-Left>"] = { ":bprevious<cr>", desc = "Switch to previous buffer" },
         ["<C-Right>"] = { ":bnext<cr>", desc = "Switch to next buffer" },
-        ["<C-Up>"] = { "5k", desc = "Move cursor up 5x" },
-        ["<C-Down>"] = { "5j", desc = "Move cursor down 5x" },
-      },
-      v = {
-        -- move.nvim
-        ["<A-Up>"] = { ":MoveBlock(-1)<cr>", desc = "Move Selection Up" },
-        ["<A-Down>"] = { ":MoveBlock(1)<cr>", desc = "Move Selection Down" },
       },
     },
   },

@@ -3,10 +3,54 @@
 
 ---@type LazySpec
 return {
+  -- Actions
   {
-    "ray-x/lsp_signature.nvim",
+    "kevinhwang91/nvim-hlslens",
+    opts = {},
+    dependencies = { "AstroNvim/astrocore", opts = { on_keys = { auto_hlsearch = false } } },
     event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
+  },
+  {
+    "echasnovski/mini.comment",
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring", opts = { enable_autocmd = false } },
+    event = "User AstroFile",
+    opts = {
+      custom_commentstring = function()
+        return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+      end,
+    },
+  },
+  {
+    "echasnovski/mini.move",
+    keys = function(_, keys)
+      local plugin = require("lazy.core.config").spec.plugins["mini.move"]
+      local opts = require("lazy.core.plugin").values(plugin, "opts", false) -- resolve mini.clue options
+      -- Populate the keys based on the user's options
+      local mappings = {
+        { opts.mappings.line_left, desc = "Move line left" },
+        { opts.mappings.line_right, desc = "Move line right" },
+        { opts.mappings.line_down, desc = "Move line down" },
+        { opts.mappings.line_up, desc = "Move line up" },
+        { opts.mappings.left, desc = "Move selection left", mode = "v" },
+        { opts.mappings.right, desc = "Move selection right", mode = "v" },
+        { opts.mappings.down, desc = "Move selection down", mode = "v" },
+        { opts.mappings.up, desc = "Move selection up", mode = "v" },
+      }
+      mappings = vim.tbl_filter(function(m) return m[1] and #m[1] > 0 end, mappings)
+      return vim.list_extend(mappings, keys)
+    end,
+    opts = {
+      mappings = {
+        left = "<A-Left>",
+        right = "<A-Right>",
+        down = "<A-Down>",
+        up = "<A-Up>",
+        line_left = "<A-Left>",
+        line_right = "<A-Right>",
+        line_down = "<A-Down>",
+        line_up = "<A-Up>",
+      },
+    },
   },
 
   -- Misc
@@ -22,26 +66,72 @@ return {
     opts = {},
   },
   {
-    "fedepujol/move.nvim",
+    "windwp/nvim-autopairs",
+    config = function(plugin, opts)
+      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
+      -- add more custom autopairs configuration such as custom rules
+      local npairs = require "nvim-autopairs"
+      local Rule = require "nvim-autopairs.rule"
+      local cond = require "nvim-autopairs.conds"
+      npairs.add_rules(
+        {
+          Rule("$", "$", { "tex", "latex" })
+            -- don't add a pair if the next character is %
+            :with_pair(cond.not_after_regex "%%")
+            -- don't add a pair if  the previous character is xxx
+            :with_pair(
+              cond.not_before_regex("xxx", 3)
+            )
+            -- don't move right when repeat character
+            :with_move(cond.none())
+            -- don't delete if the next character is xx
+            :with_del(cond.not_after_regex "xx")
+            -- disable adding a newline when you press <cr>
+            :with_cr(cond.none()),
+        },
+        -- disable for .vim files, but it work for another filetypes
+        Rule("a", "a", "-vim")
+      )
+    end,
+  },
+  {
+    "vyfor/cord.nvim",
+    version = "^2",
+    build = ":Cord update",
+    event = "VeryLazy",
     opts = {
-      line = {
-        enable = true, -- Enables line movement
-        indent = true, -- Toggles indentation
+      editor = {
+        client = "astronvim",
+        tooltip = "An aesthetically pleasing and feature-rich Neovim configuration",
       },
-      block = {
-        enable = true, -- Enables block movement
-        indent = true, -- Toggles indentation
+      buttons = {
+        { label = "View Repository", url = function(opts) return opts.repo_url end },
       },
     },
   },
+
+  -- Ui
+  { "lukas-reineke/indent-blankline.nvim" },
   {
-    "toppair/peek.nvim",
-    event = { "VeryLazy" },
-    build = "deno task --quiet build:fast",
-    config = function()
-      require("peek").setup()
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = table.concat({
+            "         ▒▒▒        ",
+            "     ▒▒▒▒▒▒▒▒▒▒     ",
+            " ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ",
+            "░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+            "░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
+            "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+            "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+            "░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒",
+            "  ░░░░░░░░▒▒▒▒▒▒▒▒  ",
+            "     ░░░░░▒▒▒▒▒     ",
+            "         ░▒         ",
+          }, "\n"),
+        },
+      },
+    },
   },
 }

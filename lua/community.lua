@@ -5,32 +5,22 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  -- Code helpers
-  { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
-  { import = "astrocommunity.indent.indent-blankline-nvim" },
-  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-  { import = "astrocommunity.lsp.nvim-lsp-endhints" },
-  {
-    "m4xshen/smartcolumn.nvim",
-    opts = {
-      colorcolumn = "90",
-      disabled_filetypes = { "help" },
-    },
-  },
 
   -- Langs
   -- { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.godot" },
-  { import = "astrocommunity.pack.rust" },
 
   -- LSP
+  { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
-  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
+  { import = "astrocommunity.lsp.nvim-lint" },
+  { import = "astrocommunity.lsp.nvim-lsp-endhints" },
+
+  -- Debugging
+  { import = "astrocommunity.debugging.nvim-dap-view" },
 
   -- Misc
   { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
-  { import = "astrocommunity.media.neocord-nvim" },
   {
     "olimorris/onedarkpro.nvim",
     opts = {
@@ -40,19 +30,12 @@ return {
       },
     },
   },
-  { import = "astrocommunity.colorscheme.nightfox-nvim" },
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   {
-    "EdenEast/nightfox.nvim",
-    lazy = false,
+    "m4xshen/smartcolumn.nvim",
     opts = {
-      options = {
-        transparent = true,
-        styles = {
-          comments = "italic",
-          keywords = "bold",
-          types = "italic,bold",
-        },
-      },
+      colorcolumn = "90",
+      disabled_filetypes = { "help" },
     },
   },
 }

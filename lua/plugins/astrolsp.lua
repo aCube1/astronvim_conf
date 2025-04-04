@@ -3,8 +3,6 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
-local config_path = vim.fn.expand "$XDG_CONFIG_HOME" .. "/astronvim"
-
 ---@type LazySpec
 return {
   "AstroNvim/astrolsp",
@@ -19,8 +17,6 @@ return {
     formatting = {
       format_on_save = {
         enabled = true,
-        allow_filetypes = {},
-        ignore_filetypes = {},
       },
       disabled = {},
       timeout_ms = 1000,
