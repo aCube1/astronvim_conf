@@ -25,6 +25,9 @@ return {
     },
     -- vim options can be configured here
     options = {
+      g = {
+        c_syntax_for_h = true,
+      },
       opt = { -- vim.opt.<key>
         relativenumber = false,
         number = true,
